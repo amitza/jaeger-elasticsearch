@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+
+  tracing:
+    image: jaegertracing/all-in-one:1.35
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    environment:
+      SPAN_STORAGE_TYPE: elasticsearch
+      ES_SERVER_URLS: http://elasticsearch:9200
+    restart: always
+    command:
+#      - "--es.version=7"
+      - "--es.index-prefix=jaeger_"
+#      - "--es.create-index-templates=false"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+    ports:
+      - "9200:9200"
+    environment:
+      bootstrap.memory_lock: "true"
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.4
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
