@@ -18,6 +18,8 @@ Jaeger saves two data types in elastic: services and traces
 
 ### Service example
 
+A new document is created for each new span type (operation) and service:
+
 ```json
 {
   "serviceName": "my-helloworld-service",
@@ -26,6 +28,7 @@ Jaeger saves two data types in elastic: services and traces
 ```
 
 ### Trace example
+
 ```json
 {
   "traceID": "627d10b63c90e9c731099da011a0bfe7",
