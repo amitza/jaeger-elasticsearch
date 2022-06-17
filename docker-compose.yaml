@@ -12,9 +12,7 @@ services:
       ES_SERVER_URLS: http://elasticsearch:9200
     restart: always
     command:
-#      - "--es.version=7"
       - "--es.index-prefix=jaeger_"
-#      - "--es.create-index-templates=false"
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
