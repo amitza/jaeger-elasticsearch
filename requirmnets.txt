@@ -1,3 +1,4 @@
 opentelemetry-api
 opentelemetry-sdk
 opentelemetry-exporter-jaeger
+elasticsearch < 8.0.0
