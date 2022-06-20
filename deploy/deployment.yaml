@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opentelemetry-collector-example
+  labels:
+    app: opentelemetry-collector-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opentelemetry-collector-example
+  template:
+    metadata:
+      labels:
+        app: opentelemetry-collector-example
+    spec:
+      containers:
+      - name: opentelemetry-collector
+        image: otel/opentelemetry-collector:0.53.0
+      - name: main
+        image: estestset/telemetry-collector-example:latest
